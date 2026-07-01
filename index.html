@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaShop - Modern E-Commerce</title>
+<!-- bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- icon -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- css -->
+<link href="./style/style.css" rel="stylesheet">
+<!-- animation -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+
+<!-- TOP NAVBAR -->
+<nav class="navbar navbar-light bg-white sticky-top topbar">
+  <div class="container-fluid px-2 px-md-3">
+    <button class="btn btn-icon d-lg-none me-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
+      <i class="bi-icon">&#9776;</i>
+    </button>
+
+    <a class="navbar-brand brand d-flex align-items-center" href="#">
+      <span class="brand-icon animate__animated animate__pulse animate__infinite	infinite animate__slow	3s">🛍️</span>
+      <span class="logo brand-text d-none d-sm-inline animate__animated animate__pulse animate__infinite	infinite animate__slow	3s">NovaShop</span>
+    </a>
+
+    <div class="search-wrap d-none d-md-flex flex-grow-1 mx-3">
+      <div class="search-box w-100">
+        <span class="search-ic ">&#128269;</span>
+        <input type="text" class="form-control search-input" placeholder="Search for products, brands and more...">
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 gap-md-3 ms-auto topbar-actions">
+      <button class="btn btn-icon-text d-none d-lg-flex" type="button">
+        <span class="ic" style="font-size:18px;">&#9825;</span><span class="ms-1">Wishlist</span>
+      </button>
+      <button class="btn btn-icon d-md-none" type="button" id="searchToggleBtn" aria-label="Toggle search" aria-expanded="false" aria-controls="mobileSearchRow">
+        <span class="ic search-toggle-ic">&#128269;</span>
+      </button>
+      <button class="btn btn-icon position-relative" type="button" aria-label="Notifications">
+        <span class="ic animate__animated animate__swing animate__infinite	infinite animate__slow	3s">&#128276;</span>
+        <span class="badge-dot">3</span>
+      </button>
+      <button class="btn btn-icon position-relative d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-label="Cart">
+        <span class="ic">&#128722;</span>
+        <span class="badge-dot js-cart-count">4</span>
+      </button>
+      <div class="dropdown d-none d-sm-block">
+        <button class="btn user-chip dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          <img src="https://i.pravatar.cc/64?img=47" class="avatar" alt="Alina Putri">
+          <span class="user-name d-none d-lg-inline">Alina Putri</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">My Profile</a></li>
+          <li><a class="dropdown-item" href="#">My Orders</a></li>
+          <li><a class="dropdown-item" href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- mobile search row: hidden by default, toggled via JS, collapses with Bootstrap collapse -->
+  <div class="collapse d-md-none" id="mobileSearchRow">
+    <div class="container-fluid px-2 pb-2 pt-1">
+      <div class="search-box w-100">
+        <span class="search-ic">&#128269;</span>
+        <input type="text" class="form-control search-input" id="mobileSearchInput" placeholder="Search products...">
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="app-shell">
+  <div class="container-fluid">
+    <div class="row g-0">
+
+      <!-- SIDEBAR (desktop/tablet) -->
+      <aside class="col-lg-2 d-none d-lg-block sidebar-col">
+        <div class="sidebar-scroll">
+          <ul class="nav-list">
+            <li><a href="#" class="nav-link-item active"><span class="nl-ic">&#127968;</span>Home</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#9638;</span>Categories</a></li>
+            <li><a href="#" class="nav-link-item">
+                <span class="nl-ic">&#127991;&#65039;</span>Deals
+                <span class="tag-hot">Hot</span>
+              </a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#10548;</span>New Arrivals</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#128077;</span>Best Sellers</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#127991;</span>Brands</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#128448;&#65039;</span>Collections</a></li>
+          </ul>
+          <hr class="nav-divider">
+          <ul class="nav-list">
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#128196;</span>My Orders</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#9825;</span>Wishlist</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#127991;&#65039;</span>Coupons</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#128205;</span>Addresses</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#9881;&#65039;</span>Account Settings</a></li>
+          </ul>
+
+          <div class="promo-card">
+            <div class="promo-label">Special Offer</div>
+            <h6 class="promo-title">Summer Sale<br>Up to 50% Off</h6>
+            <button class="btn promo-btn">Shop Now</button>
+            <div class="promo-emoji">🛍️</div>
+          </div>
+
+          <div class="help-row">
+            <span class="help-ic">&#127911;</span>
+            <div>
+              <div class="help-title">Need Help?</div>
+              <div class="help-sub">24/7 Support Center</div>
+            </div>
+          </div>
+
+          <button class="mode-row" id="themeToggle" type="button">
+            <span class="mode-ic">&#9728;&#65039;</span>
+            <span class="mode-text">Light Mode</span>
+            <span class="mode-chev">&#8250;</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- OFFCANVAS SIDEBAR (mobile/tablet) -->
+      <div class="offcanvas offcanvas-start sidebar-offcanvas" tabindex="-1" id="sidebarOffcanvas">
+        <div class="offcanvas-header">
+          <a class="navbar-brand brand d-flex align-items-center">
+            <span class="brand-icon">🛍️</span><span class="brand-text">NovaShop</span>
+          </a>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body sidebar-scroll p-0">
+          <ul class="nav-list">
+            <li><a href="#" class="nav-link-item active"><span class="nl-ic">&#127968;</span>Home</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#9638;</span>Categories</a></li>
+            <li><a href="#" class="nav-link-item">
+                <span class="nl-ic">&#127991;&#65039;</span>Deals
+                <span class="tag-hot">Hot</span>
+              </a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#10548;</span>New Arrivals</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#128077;</span>Best Sellers</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#127991;</span>Brands</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#128448;&#65039;</span>Collections</a></li>
+          </ul>
+          <hr class="nav-divider">
+          <ul class="nav-list">
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#128196;</span>My Orders</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#9825;</span>Wishlist</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#127991;&#65039;</span>Coupons</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#128205;</span>Addresses</a></li>
+            <li><a href="#" class="nav-link-item"><span class="nl-ic">&#9881;&#65039;</span>Account Settings</a></li>
+          </ul>
+          <div class="promo-card">
+            <div class="promo-label">Special Offer</div>
+            <h6 class="promo-title">Summer Sale<br>Up to 50% Off</h6>
+            <button class="btn promo-btn">Shop Now</button>
+            <div class="promo-emoji">🛍️</div>
+          </div>
+          <div class="help-row">
+            <span class="help-ic">&#127911;</span>
+            <div>
+              <div class="help-title">Need Help?</div>
+              <div class="help-sub">24/7 Support Center</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <main class="col-lg-8 main-col">
+        <div class="main-scroll">
+
+          <!-- Hero banner -->
+          <div class="hero-banner mb-3 mb-md-4">
+            <div class="hero-content">
+              <span class="hero-pill">New Collection</span>
+              <h1 class="hero-title">Find Your Style,<br>Love Your Look <span>✨</span></h1>
+              <p class="hero-sub">Discover the latest trends in fashion, beauty, and lifestyle.</p>
+              <button class="btn hero-btn">Shop Now <span class="ms-1 arrow">&#8594;</span></button>
+            </div>
+            <img class="hero-img d-none d-sm-block" src="https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=600&q=80" alt="Model wearing lavender hoodie">
+            <div class="hero-dots">
+              <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </div>
+
+          <!-- Category icons -->
+          <div class="cat-strip mb-3 mb-md-4">
+            <div class="row gx-2 gx-md-3 row-cols-3 row-cols-sm-6">
+              <div class="col-6 col-sm-5 col-md-4 col-xl-2 cat-item">
+                <div class="cat-ic">&#128085;</div><span>Fashion</span>
+              </div>
+              <div class="col-6 col-sm-5 col-md-4 col-xl-2 cat-item">
+                <div class="cat-ic">&#128164;</div><span>Beauty</span>
+              </div>
+              <div class="col-6 col-sm-5 col-md-4 col-xl-2 cat-item">
+                <div class="cat-ic">&#127911;</div><span>Electronics</span>
+              </div>
+              <div class="col-6 col-sm-5 col-md-4 col-xl-2 cat-item">
+                <div class="cat-ic">&#128746;</div><span>Home &amp; Living</span>
+              </div>
+              <div class="col-6 col-sm-5 col-md-4 col-xl-2 cat-item">
+                <div class="cat-ic">&#128095;</div><span>Sports</span>
+              </div>
+              <div class="col-6 col-sm-5 col-md-4 col-xl-2 cat-item">
+                <div class="cat-ic">&#8862;</div><span>More</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Promo tiles -->
+          <div class="row g-2 g-md-3 mb-3 mb-md-4">
+            <div class="col-12 col-md-6 col-xl-3">
+              <div class="promo-tile tile-pink">
+                <div class="tile-label">Flash Sale</div>
+                <div class="tile-sub">Limited time deals</div>
+                <div class="tile-strong">Up to 70% Off</div>
+                <div class="tile-timer" id="flashTimer" data-seconds="9918">02 : 45 : 18</div>
+              </div>
+            </div>
+            <div class="ccol-12 col-md-6 col-xl-3">
+              <div class="promo-tile tile-green">
+                <div class="tile-label">Free Shipping</div>
+                <div class="tile-sub">On orders over $50</div>
+                <div class="tile-link">Shop now &#8594;</div>
+                <div class="tile-emoji">📦</div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-6">
+              <div class="promo-tile tile-tan">
+                <div class="tile-label">New Arrivals</div>
+                <div class="tile-sub">Check out the latest trends</div>
+                <div class="tile-link">Shop now &#8594;</div>
+                <div class="tile-emoji">🕶️</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Best Deals -->
+          <section class="mb-3 mb-md-4">
+            <div class="d-flex justify-content-between align-items-center mb-2 mb-md-3">
+              <h5 class="section-title mb-0">Best Deals for You</h5>
+              <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="row g-2 g-md-3 row-cols-2 row-cols-md-4">
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="product-card">
+                  <span class="discount-badge">-25%</span>
+                  <button class="wish-btn">&#9825;</button>
+                  <img src="https://images.unsplash.com/photo-1605408499391-6368c628ef42?w=300&q=80" class="product-img" alt="Air Max 270 React">
+                  <div class="product-body">
+                    <div class="product-name">Air Max 270 React</div>
+                    <div class="product-meta">Women's Shoes</div>
+                    <div class="product-price">$129.99 <del>$168.99</del></div>
+                    <div class="product-rating">&#11088; 4.8 (124)</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="product-card">
+                  <span class="discount-badge">-20%</span>
+                  <button class="wish-btn">&#9825;</button>
+                  <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300&q=80" class="product-img" alt="Apple Watch Series 9">
+                  <div class="product-body">
+                    <div class="product-name">Apple Watch Series 9</div>
+                    <div class="product-meta">41mm Midnight</div>
+                    <div class="product-price">$359.00 <del>$449.00</del></div>
+                    <div class="product-rating">&#11088; 4.9 (98)</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="product-card">
+                  <span class="discount-badge">-30%</span>
+                  <button class="wish-btn">&#9825;</button>
+                  <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=300&q=80" class="product-img" alt="Chanel Chance Eau Tendre EDP">
+                  <div class="product-body">
+                    <div class="product-name">Chanel Chance Eau Tendre EDP 100ml</div>
+                    <div class="product-meta">&nbsp;</div>
+                    <div class="product-price">$89.99 <del>$129.00</del></div>
+                    <div class="product-rating">&#11088; 4.7 (86)</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="product-card">
+                  <button class="wish-btn">&#9825;</button>
+                  <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&q=80" class="product-img" alt="Sony WH-1000XM5">
+                  <div class="product-body">
+                    <div class="product-name">Sony WH-1000XM5 Wireless Headphones</div>
+                    <div class="product-meta">&nbsp;</div>
+                    <div class="product-price">$299.00</div>
+                    <div class="product-rating">&#11088; 4.9 (170)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-dots">
+              <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </section>
+
+          <!-- Recommended -->
+          <section class="mb-3 mb-md-4">
+            <div class="d-flex justify-content-between align-items-center mb-2 mb-md-3">
+              <h5 class="section-title mb-0">Recommended for You</h5>
+              <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="row g-2 g-md-3 row-cols-2 row-cols-md-4">
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="product-card">
+                  <span class="discount-badge">-15%</span>
+                  <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?w=300&q=80" class="product-img" alt="Oversized Cotton Shirt">
+                  <div class="product-body">
+                    <div class="product-name">Oversized Cotton Shirt Beige</div>
+                    <div class="product-price">$29.99 <del>$35.00</del></div>
+                    <div class="swatch-row">
+                      <span class="swatch sw-cream"></span><span class="swatch sw-brown"></span><span class="swatch sw-black"></span>
+                      <button class="add-btn">&#128722;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="product-card">
+                  <span class="discount-badge">-20%</span>
+                  <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=300&q=80" class="product-img" alt="Minimalist Shoulder Bag">
+                  <div class="product-body">
+                    <div class="product-name">Minimalist Shoulder Bag Olive Green</div>
+                    <div class="product-price">$39.99 <del>$49.99</del></div>
+                    <div class="swatch-row">
+                      <span class="swatch sw-olive"></span><span class="swatch sw-brown2"></span><span class="swatch sw-black"></span>
+                      <button class="add-btn">&#128722;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="product-card">
+                  <span class="discount-badge">-25%</span>
+                  <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=300&q=80" class="product-img" alt="The Ordinary Niacinamide">
+                  <div class="product-body">
+                    <div class="product-name">The Ordinary Niacinamide 10% + Zinc 1% 30ml</div>
+                    <div class="product-price">$6.75 <del>$9.00</del></div>
+                    <div class="swatch-row"><button class="add-btn ms-auto">&#128722;</button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="product-card">
+                  <span class="discount-badge">-10%</span>
+                  <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?w=300&q=80" class="product-img" alt="Fossil Gen 6 Smartwatch">
+                  <div class="product-body">
+                    <div class="product-name">Fossil Gen 6 Smartwatch Black Silicone</div>
+                    <div class="product-price">$215.10 <del>$239.00</del></div>
+                    <div class="swatch-row"><button class="add-btn ms-auto">&#128722;</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Trust strip -->
+          <div class="trust-strip">
+            <div class="row g-2 g-md-3 row-cols-2 row-cols-md-4 text-center">
+              <div class="trust-1 col-12 col-md-6 col-xl-3 trust-item"><div class="trust-ic">&#128274;</div><div><div class="trust-title">Secure Payment</div><div class="trust-sub">100% secure payment</div></div></div>
+              <div class="trust-2 col-12 col-md-6 col-xl-3 trust-item"><div class="trust-ic">&#128260;</div><div><div class="trust-title">Easy Returns</div><div class="trust-sub">30-day return policy</div></div></div>
+              <div class="trust-3 col-12 col-md-6 col-xl-3 trust-item"><div class="trust-ic">&#127911;</div><div><div class="trust-title">24/7 Support</div><div class="trust-sub">Dedicated support</div></div></div>
+              <div class="trust-4 col-12 col-md-6 col-xl-3 trust-item"><div class="trust-ic">&#11088;</div><div><div class="trust-title">Trusted by Thousands</div><div class="trust-sub">4.8 average rating</div></div></div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+      <!-- CART SIDEBAR (desktop/tablet) -->
+      <aside class="col-lg-2 d-none d-lg-block cart-col">
+        <div class="cart-scroll" data-cart-panel="desktop">
+          <div class="cart-header">
+            <h6 class="mb-0"><span class="cart-count-label">My Cart</span> (<span class="js-cart-count">4</span>)</h6>
+            <button class="btn-close-cart">&times;</button>
+          </div>
+
+          <div class="cart-items-list">
+          <div class="cart-item" data-cart-id="airmax" data-price="129.99">
+            <img src="https://images.unsplash.com/photo-1605408499391-6368c628ef42?w=120&q=80" class="cart-img" alt="Air Max 270 React">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Air Max 270 React</div>
+              <div class="cart-item-meta">Women's Shoes<br>Size: 7 US</div>
+              <div class="cart-item-price">$129.99</div>
+              <div class="qty-row">
+                <button class="qty-btn" data-qty="minus">&minus;</button><span class="qty-val">1</span><button class="qty-btn" data-qty="plus">+</button>
+                <button class="del-btn ms-auto" aria-label="Remove item">&#128465;</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-item" data-cart-id="chanel" data-price="89.99">
+            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=120&q=80" class="cart-img" alt="Chanel Chance Eau Tendre EDP">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Chanel Chance Eau Tendre EDP</div>
+              <div class="cart-item-meta">100ml</div>
+              <div class="cart-item-price">$89.99</div>
+              <div class="qty-row">
+                <button class="qty-btn" data-qty="minus">&minus;</button><span class="qty-val">1</span><button class="qty-btn" data-qty="plus">+</button>
+                <button class="del-btn ms-auto" aria-label="Remove item">&#128465;</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-item" data-cart-id="bag" data-price="39.99">
+            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=120&q=80" class="cart-img" alt="Minimalist Shoulder Bag">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Minimalist Shoulder Bag</div>
+              <div class="cart-item-meta">Olive Green</div>
+              <div class="cart-item-price">$39.99</div>
+              <div class="qty-row">
+                <button class="qty-btn" data-qty="minus">&minus;</button><span class="qty-val">1</span><button class="qty-btn" data-qty="plus">+</button>
+                <button class="del-btn ms-auto" aria-label="Remove item">&#128465;</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-item" data-cart-id="sunglasses" data-price="199.00">
+            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=120&q=80" class="cart-img" alt="Gentle Monster Lilit 01 Sunglasses">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Gentle Monster Lilit 01 Sunglasses</div>
+              <div class="cart-item-meta">Black</div>
+              <div class="cart-item-price">$199.00</div>
+              <div class="qty-row">
+                <button class="qty-btn" data-qty="minus">&minus;</button><span class="qty-val">1</span><button class="qty-btn" data-qty="plus">+</button>
+                <button class="del-btn ms-auto" aria-label="Remove item">&#128465;</button>
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div class="promo-input-row">
+            <input type="text" class="form-control promo-input" placeholder="Promo Code">
+            <button class="btn apply-btn">Apply</button>
+          </div>
+
+          <div class="cart-summary">
+            <div class="sum-row"><span>Subtotal</span><span class="js-subtotal">$458.97</span></div>
+            <div class="sum-row text-danger"><span>Discount</span><span class="js-discount">-$45.50</span></div>
+            <div class="sum-row"><span>Shipping</span><span class="text-success js-shipping">Free</span></div>
+            <div class="sum-row sum-total"><span>Total</span><span class="js-total">$413.07</span></div>
+          </div>
+
+          <button class="btn-ar btn checkout-btn">&#128274; Checkout (<span class="js-cart-count">4</span>) <span class="arrow ms-1">&#8594;</span></button>
+
+          <div class="pay-icons">
+            <span class="pay-label">We accept</span>
+            <div class="pay-row">
+              <span class="pay-chip">VISA</span><span class="pay-chip">MC</span><span class="pay-chip">PayPal</span><span class="pay-chip">Pay</span>
+            </div>
+          </div>
+
+          <div class="suggest-box">
+            <h6 class="suggest-title">You might also like</h6>
+            <div class="suggest-item">
+              <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=100&q=80" class="suggest-img" alt="Ray-Ban Wayfarer">
+              <div class="suggest-info">
+                <div class="suggest-name">Ray-Ban Wayfarer</div>
+                <div class="suggest-meta">Classic Black</div>
+                <div class="suggest-price">$155.00</div>
+              </div>
+              <button class="add-circle">+</button>
+            </div>
+            <div class="suggest-item">
+              <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&q=80" class="suggest-img" alt="Nike Air Force 1 '07">
+              <div class="suggest-info">
+                <div class="suggest-name">Nike Air Force 1 '07</div>
+                <div class="suggest-meta">White</div>
+                <div class="suggest-price">$109.99</div>
+              </div>
+              <button class="add-circle">+</button>
+            </div>
+          </div>
+
+          <div class="recent-box">
+            <h6 class="suggest-title">Recently Viewed</h6>
+            <div class="recent-row">
+              <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=80&q=80" alt="Recently viewed watch">
+              <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=80&q=80" alt="Recently viewed hoodie">
+              <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=80&q=80" alt="Recently viewed bag">
+              <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=80&q=80" alt="Recently viewed perfume">
+            </div>
+          </div>
+
+          <div class="join-card">
+            <div class="join-title">Join NovaShop Club</div>
+            <div class="join-sub">Get exclusive offers, early access and more!</div>
+            <button class="btn join-btn">Join Now</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CART OFFCANVAS (mobile/tablet) -->
+      <div class="offcanvas offcanvas-end cart-offcanvas" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header cart-header">
+          <h6 class="mb-0"><span class="cart-count-label">My Cart</span> (<span class="js-cart-count">4</span>)</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body cart-scroll p-0" data-cart-panel="mobile">
+          <div class="cart-items-list col-12 col-md-6 col-xl-3">
+          <div class="cart-item" data-cart-id="airmax" data-price="129.99">
+            <img src="https://images.unsplash.com/photo-1605408499391-6368c628ef42?w=120&q=80" class="cart-img" alt="Air Max 270 React">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Air Max 270 React</div>
+              <div class="cart-item-meta">Women's Shoes<br>Size: 7 US</div>
+              <div class="cart-item-price">$129.99</div>
+              <div class="qty-row">
+                <button class="qty-btn" data-qty="minus">&minus;</button><span class="qty-val">1</span><button class="qty-btn" data-qty="plus">+</button>
+                <button class="del-btn ms-auto" aria-label="Remove item">&#128465;</button>
+              </div>
+            </div>
+          </div>
+          <div class="cart-item" data-cart-id="chanel" data-price="89.99">
+            <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=120&q=80" class="cart-img" alt="Chanel Chance Eau Tendre EDP">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Chanel Chance Eau Tendre EDP</div>
+              <div class="cart-item-meta">100ml</div>
+              <div class="cart-item-price">$89.99</div>
+              <div class="qty-row">
+                <button class="qty-btn" data-qty="minus">&minus;</button><span class="qty-val">1</span><button class="qty-btn" data-qty="plus">+</button>
+                <button class="del-btn ms-auto" aria-label="Remove item">&#128465;</button>
+              </div>
+            </div>
+          </div>
+          <div class="cart-item" data-cart-id="bag" data-price="39.99">
+            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=120&q=80" class="cart-img" alt="Minimalist Shoulder Bag">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Minimalist Shoulder Bag</div>
+              <div class="cart-item-meta">Olive Green</div>
+              <div class="cart-item-price">$39.99</div>
+              <div class="qty-row">
+                <button class="qty-btn" data-qty="minus">&minus;</button><span class="qty-val">1</span><button class="qty-btn" data-qty="plus">+</button>
+                <button class="del-btn ms-auto" aria-label="Remove item">&#128465;</button>
+              </div>
+            </div>
+          </div>
+          <div class="cart-item" data-cart-id="sunglasses" data-price="199.00">
+            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=120&q=80" class="cart-img" alt="Gentle Monster Lilit 01 Sunglasses">
+            <div class="cart-item-info">
+              <div class="cart-item-name">Gentle Monster Lilit 01 Sunglasses</div>
+              <div class="cart-item-meta">Black</div>
+              <div class="cart-item-price">$199.00</div>
+              <div class="qty-row">
+                <button class="qty-btn" data-qty="minus">&minus;</button><span class="qty-val">1</span><button class="qty-btn" data-qty="plus">+</button>
+                <button class="del-btn ms-auto" aria-label="Remove item">&#128465;</button>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="promo-input-row">
+            <input type="text" class="form-control promo-input" placeholder="Promo Code">
+            <button class="btn apply-btn">Apply</button>
+          </div>
+          <div class="cart-summary">
+            <div class="sum-row"><span>Subtotal</span><span class="js-subtotal">$458.97</span></div>
+            <div class="sum-row text-danger"><span>Discount</span><span class="js-discount">-$45.50</span></div>
+            <div class="sum-row"><span>Shipping</span><span class="text-success js-shipping">Free</span></div>
+            <div class="sum-row sum-total"><span>Total</span><span class="js-total">$413.07</span></div>
+          </div>
+          <button class="btn checkout-btn">&#128274; Checkout (<span class="js-cart-count">4</span>) <span class="ms-1">&#8594;</span></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Mobile bottom nav -->
+<nav class="bottom-nav d-flex d-lg-none">
+  <button class="bn-item active"><span class="bn-ic">&#127968;</span><span>Home</span></button>
+  <button class="bn-item"><span class="bn-ic">&#9638;</span><span>Categories</span></button>
+  <button class="bn-item" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+    <span class="bn-ic position-relative">&#128722;<span class="badge-dot bn-badge js-cart-count">4</span></span><span>Cart</span>
+  </button>
+  <button class="bn-item"><span class="bn-ic">&#9825;</span><span>Wishlist</span></button>
+  <button class="bn-item"><span class="bn-ic"><img src="https://i.pravatar.cc/64?img=47" class="bn-avatar" alt="Alina"></span><span>Profile</span></button>
+</nav>
+
+<button class="ai-fab d-none d-lg-flex" aria-label="AI assistant">&#10024;</button>
+
+<div class="app-toast-stack" id="toastStack" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
